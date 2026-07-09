@@ -55,19 +55,7 @@
 }
 
 *{ box-sizing:border-box; }
-
-/* FIX: html gets a dark background matching the opening cinematic.
-   On iOS Safari the dynamic address bar can reveal a sliver below a
-   100vh-sized fixed overlay during rubber-band scroll/bounce; previously
-   that sliver showed the page's near-white body background. Now it
-   shows the same night tone as the overlay, so it reads as seamless
-   instead of a white flash. */
-html{
-  scroll-behavior:smooth;
-  background:var(--night);
-  height:100%;
-}
-
+html{ scroll-behavior:smooth; }
 body{
   margin:0;
   background:var(--ivory);
@@ -75,20 +63,8 @@ body{
   font-family:var(--f-body);
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
-  min-height:100vh;
-  min-height:100dvh; /* FIX: dynamic viewport height for mobile browsers */
 }
-
-/* FIX: while the intro is showing, truly pin the body in place (not just
-   overflow:hidden) and size it with dvh so Safari's collapsing/expanding
-   toolbar can't create a gap under the fixed overlay. */
-body.locked{
-  overflow:hidden;
-  position:fixed;
-  width:100%;
-  height:100vh;
-  height:100dvh;
-}
+body.locked{ overflow:hidden; height:100vh; }
 
 img{ max-width:100%; display:block; }
 ::selection{ background:var(--rose); color:var(--night); }
@@ -204,8 +180,6 @@ h1,h2,h3{ font-family:var(--f-display); margin:0; color:var(--ink); }
    ================================================================ */
 #opening{
   position:fixed; inset:0; z-index:9999;
-  height:100vh;
-  height:100dvh; /* FIX: matches real visible viewport on mobile Safari */
   background:radial-gradient(ellipse at 50% 30%, #2a1c14 0%, var(--night) 55%, var(--night-deep) 100%);
   display:flex; align-items:center; justify-content:center;
   transition:opacity 1.1s var(--ease-lux), visibility 1.1s;
@@ -349,9 +323,7 @@ h1,h2,h3{ font-family:var(--f-display); margin:0; color:var(--ink); }
 .section-inner{ position:relative; z-index:2; max-width:1080px; margin:0 auto; }
 
 #welcome{
-  min-height:100vh;
-  min-height:100dvh; /* FIX: dynamic viewport height for mobile browsers */
-  display:flex; align-items:center; justify-content:center; text-align:center;
+  min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;
   background:
     radial-gradient(circle at 50% 0%, rgba(232,196,196,.35), transparent 55%),
     linear-gradient(180deg, var(--ivory) 0%, var(--ivory-deep) 100%);
